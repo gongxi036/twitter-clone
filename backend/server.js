@@ -7,6 +7,7 @@ import connectMongoDB from './db/db.js'
 import authRouters from './routers/auth.route.js'
 import userRouters from './routers/user.route.js'
 import postRouters from './routers/post.route.js'
+import notificationRouters from './routers/notification.route.js'
 
 const app = express()
 dotenv.config()
@@ -26,6 +27,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRouters)
 app.use('/api/users', userRouters)
 app.use('/api/posts', postRouters)
+app.use('/api/notifications', notificationRouters)
 
 app.listen(PORT, () => {
   console.log(`Server is start on port ${PORT}`)
