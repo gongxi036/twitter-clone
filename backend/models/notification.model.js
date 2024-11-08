@@ -4,16 +4,16 @@ const notificationSchema = new mongoose.Schema({
   from: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    require: true
+    required: true
   },
   to: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    require: true
+    required: true
   },
   type: {
     type: String,
-    require: true,
+    required: true,
     enum: ['follow', 'like']
   },
   read: {

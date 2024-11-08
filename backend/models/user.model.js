@@ -3,21 +3,21 @@ import mongoose from 'mongoose'
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    require: true,
+    required: true,
     unique: true
   },
   fullName: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     minLength: 6
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true
   },
   followers: [{
@@ -45,7 +45,14 @@ const userSchema = new mongoose.Schema({
   link: {
     type: String,
     default: ''
-  }
+  },
+  likePosts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Post',
+      default: []
+    }
+  ]
 }, { timestamp: true})
 
 const User = mongoose.model('User', userSchema)

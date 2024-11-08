@@ -6,6 +6,7 @@ import { v2 as cloudinary } from 'cloudinary'
 import connectMongoDB from './db/db.js'
 import authRouters from './routers/auth.route.js'
 import userRouters from './routers/user.route.js'
+import postRouters from './routers/post.route.js'
 
 const app = express()
 dotenv.config()
@@ -24,6 +25,7 @@ app.use(cookieParser())
 
 app.use('/api/auth', authRouters)
 app.use('/api/users', userRouters)
+app.use('/api/posts', postRouters)
 
 app.listen(PORT, () => {
   console.log(`Server is start on port ${PORT}`)
