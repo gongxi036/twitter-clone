@@ -10,7 +10,7 @@ import { MdEdit } from 'react-icons/md'
 import Posts from '../../components/common/Posts'
 import ProfileHeaderSkeleton from '../../components/skeletons/ProfileHeaderSkeleton'
 import EditProfileModal from './EditProfileModal'
-import { formatMemberSinceDate } from '../../utils/formatDate'
+import { formatMemberSinceDate } from '../../utils/date'
 import useFollow from '../../hooks/useFollow'
 import useUpdateUserProfile from '../../hooks/useUpdateUserProfile'
 

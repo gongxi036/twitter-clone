@@ -19,6 +19,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 })
 const PORT = process.env.PORT
+const __dirname = path.resolve()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -28,6 +29,14 @@ app.use('/api/auth', authRouters)
 app.use('/api/users', userRouters)
 app.use('/api/posts', postRouters)
 app.use('/api/notifications', notificationRouters)
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/dist')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/frontend/dist/index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Server is start on port ${PORT}`)
