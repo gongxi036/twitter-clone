@@ -96,7 +96,7 @@ export const updateUser = async (req, res) => {
     if (!user) return res.status(404).json({ error: 'User not found' })
 
     if ((!currentPassword && newPassword) || (currentPassword && !newPassword)) {
-      return res.status(400).json({ error: 'Please provide both cueent password and new password' })
+      return res.status(400).json({ error: 'Please provide both current password and new password' })
     }
     if (currentPassword && newPassword) {
       const isMatch = bcrypt.compare(currentPassword, user.password)
@@ -116,7 +116,7 @@ export const updateUser = async (req, res) => {
         await cloudinary.uploader.destroy(user.profileImg.split('/').pop().split('.')[0])
       }
       const uploadedResponse = await cloudinary.uploader.upload(profileImg)
-      profileImg = uploadedResponse.seccre_url
+      profileImg = uploadedResponse.secure_url
     }
 
     if (coverImg) {
@@ -125,7 +125,7 @@ export const updateUser = async (req, res) => {
         await cloudinary.uploader.destroy(user.coverImg.split('/').pop().split('.')[0])
       }
       const uploadedResponse = await cloudinary.uploader.upload(coverImg)
-      coverImg = uploadedResponse.seccre_url
+      coverImg = uploadedResponse.secure_url
     }
 
     user.fullName = fullName || user.fullName

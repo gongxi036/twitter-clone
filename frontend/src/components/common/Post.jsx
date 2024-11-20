@@ -16,13 +16,13 @@ const Post = ({ post }) => {
   const [comment, setComment] = useState('')
   const postOwner = post.user
 
-  const isMyPost = authUser._id === post.user._id
 	const formattedDate = formatPostDate(post.createdAt)
-
+  
   const queryClient = useQueryClient()
-
+  
   // get user
   const { data: authUser } = useQuery({ queryKey: ['authUser'] })
+  const isMyPost = authUser._id === post.user._id
   const isLiked = post.likes.includes(authUser._id)
 
   // delete post fetch
@@ -49,9 +49,9 @@ const Post = ({ post }) => {
 
   // like and unlike post
   const { mutate: likePost, isPending: isLiking } = useMutation({
-    mutateFn: async () => {
+    mutationFn: async () => {
       try {
-        const res = await fetch(`/api/posts/${post._id}`, {
+        const res = await fetch(`/api/posts/like/${post._id}`, {
           method: 'POST'
         })
         const data = await res.json()
@@ -63,7 +63,7 @@ const Post = ({ post }) => {
     },
     onSuccess: updatedLikes => {
       // update the cache directory fot that post
-      queryClient.setQueryData('post', oldData => {
+      queryClient.setQueryData(['posts'], oldData => {
         return oldData.map(p => {
           if (p._id === post._id) {
             return { ...p, likes: updatedLikes }
@@ -118,7 +118,7 @@ const Post = ({ post }) => {
   }
 
   const handleLikePost = () => {
-    if (!isLiking) return
+    if (isLiking) return
     likePost()
   }
 

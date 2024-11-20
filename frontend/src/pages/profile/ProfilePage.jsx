@@ -31,7 +31,6 @@ const ProfilePage = () => {
 
   // get auth user
   const { data: authUser } = useQuery({ queryKey: ['authUser'] })
-
   // get user profile query
   const {
     data: user,
@@ -56,7 +55,7 @@ const ProfilePage = () => {
 
   const { updateUserProfile, isUpdatingProfile } = useUpdateUserProfile()
   const memberSinceDate = formatMemberSinceDate(user?.createdAt)
-  const isMyProfile = authUser._id === user._id
+  const isMyProfile = authUser._id === user?._id
   const amIFollowing = user?.followers.includes(authUser._id)
 
   const handleImgChange = (e, state) => {
