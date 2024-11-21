@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast'
 
 import HomePage from './pages/home/HomePage'
 import LoginPage from './pages/auth/login/LoginPage'
-import SignupPage from './pages/auth/signup/SignupPage'
+import SignupPage from './pages/auth/signup/SignUpPage'
 import Sidebar from './components/common/SideBar'
 import RightPanel from './components/common/RightPanel'
 import NotificationPage from './pages/notification/NotificationPage'
